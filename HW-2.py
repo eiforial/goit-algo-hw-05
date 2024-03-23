@@ -3,7 +3,8 @@ from typing import Callable
 def generator_numbers(text: str):
     for word in text.split():
         try:
-            yield float(word.replace(',', '.'))
+            if word.isdigit() or (word.replace('.', '', 1).isdigit() and '.' in word):
+                yield float(word)
         except ValueError:
             continue
 
